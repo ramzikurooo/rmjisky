@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PORTOFOLIO | About me</title>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+    <canvas id="lightrays"></canvas>
+ 
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <span id="typed-logo"></span><span class="cursor"></span>
+    </div>
+
+    <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- TOMBOL BAHASA -->
+<!-- FLOATING THEME + LANGUAGE BUTTON -->
+<div class="theme-widget" id="themeWidget">
+    <button class="theme-fab" id="themeFab" aria-label="Pengaturan tema dan bahasa">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <div class="theme-menu" id="themeMenu">
+        <button class="theme-option" data-theme="light">
+            ☀️ Light Mode
+        </button>
+
+        <button class="theme-option" data-theme="dark">
+            🌙 Dark Mode
+        </button>
+
+        <div class="theme-divider"></div>
+
+        <button class="theme-option" data-lang="id">
+            🌐 Bahasa Indonesia
+        </button>
+
+        <button class="theme-option" data-lang="en">
+            🌐 English
+        </button>
+    </div>
+</div>
+
+</header>
+    
+
+
+    <main class="container">
+
+        <!-- INTRODUCTION / HERO -->
+        <section class="intro">
+
+            <p class="small-title"
+               data-id="TENTANG SAYA"
+               data-en="ABOUT ME">
+                TENTANG SAYA            </p>
+
+            <h1 data-id="HALO, SAYA RAMZI."
+                data-en="HELLO, I'M RAMZI.">
+            </h1>
+
+            <p class="description"
+               data-id="SELAMAT DATANG DI HALAMAN PRIBADI SAYA. DI SINI SAYA INGIN MEMPERKENALKAN DIRI, MINAT, DAN BEBERAPA HAL YANG MENJADI BAGIAN DARI KEHIDUPAN SAYA."
+               data-en="WELCOME TO MY PERSONAL WEBSITE. HERE, I WOULD LIKE TO INTRODUCE MYSELF, MY INTERESTS, AND SOME OF THE THINGS THAT ARE PART OF MY LIFE.">
+
+                SELAMAT DATANG DI HALAMAN PRIBADI SAYA. DI SINI SAYA INGIN MEMPERKENALKAN DIRI, MINAT, DAN BEBERAPA HAL YANG MENJADI BAGIAN DARI KEHIDUPAN SAYA.
+
+            </p>
+
+        
+                     
+        </section>
+
+        
+
+
+        <!-- CONTENT GRID -->
+        <div class="content-grid">
+
+
+            <!-- LEFT COLUMN -->
+            <div class="content-column left-column">
+
+
+                <!-- 01 INTRODUCTION -->
+                <section class="content-section">
+
+                    <span class="number">01 / INTRODUCTION</span>
+
+                    <h2 data-id="PERKENALAN"
+                        data-en="INTRODUCTION">
+                        PERKENALAN
+                    </h2>
+
+                    <p data-id="NAMA SAYA RAMZI RAZIDSKY. SAYA ADALAH SESEORANG YANG SENANG MEMPELAJARI HAL BARU, MENGEMBANGKAN KEMAMPUAN DIRI, DAN MENDAPATKAN PENGALAMAN BARU."
+                       data-en="MY NAME IS RAMZI RAZIDSKY. I AM SOMEONE WHO ENJOYS LEARNING NEW THINGS, DEVELOPING MY SKILLS, AND GAINING NEW EXPERIENCES.">
+
+                        NAMA SAYA RAMZI RAZIDSKY. SAYA ADALAH SESEORANG YANG SENANG MEMPELAJARI HAL BARU, MENGEMBANGKAN KEMAMPUAN DIRI, DAN MENDAPATKAN PENGALAMAN BARU.
+
+                    </p>
+
+                    <div class="section-image">
+
+                        <img src="introduction.jpg"
+                             alt="Introduction"
+                             onclick="openPhoto(this)">
+
+                    </div>
+
+                </section>
+                <!-- 02 HOBBIES -->
+<section class="content-section">
+
+    <span class="number">02 / INTERESTS</span>
+
+    <h2 data-id="HOBI SAYA"
+        data-en="MY HOBBIES">
+        HOBI SAYA
+    </h2>
+
+    <p data-id="SAYA MEMILIKI BEBERAPA HOBI YANG SAYA NIKMATI DI WAKTU LUANG, SEPERTI MENDENGARKAN MUSIK, MENJELAJAHI DUNIA TEKNOLOGI, DAN MEMPELAJARI HAL-HAL BARU DI INTERNET."
+       data-en="I HAVE SEVERAL HOBBIES THAT I ENJOY IN MY FREE TIME, SUCH AS LISTENING TO MUSIC, EXPLORING TECHNOLOGY, AND LEARNING NEW THINGS ON THE INTERNET.">
+
+        SAYA MEMILIKI BEBERAPA HOBI YANG SAYA NIKMATI DI WAKTU LUANG, SEPERTI MENDENGARKAN MUSIK, MENJELAJAHI DUNIA TEKNOLOGI, DAN MEMPELAJARI HAL-HAL BARU DI INTERNET.
+
+    </p>
+
+    <!-- HOBBY GALLERY -->
+    <div class="hobby-gallery" id="hobbyGallery" tabindex="0"
+         aria-label="Galeri hobi, geser ke kiri atau kanan">
+
+        <div class="hobby-track">
+
+            <figure class="hobby-card">
+                <img src="hobi.jpg" alt="Sport" draggable="false">
+                <figcaption class="hobby-caption" data-id="Musik" data-en="Sport">Sport</figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+                <img src="hobi2.jpg" alt="Teknologi" draggable="false">
+                <figcaption class="hobby-caption" data-id="Teknologi" data-en="Technology">Teknologi</figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+                <img src="hobi3.jpg" alt="Internet" draggable="false">
+                <figcaption class="hobby-caption" data-id="Belajar Hal Baru" data-en="Learning">Belajar Hal Baru</figcaption>
+            </figure>
+
+        </div>
+    </div>
+
+    <div class="hobby-nav">
+        <button type="button" id="hobbyPrev" aria-label="Sebelumnya">&#8249;</button>
+        <button type="button" id="hobbyNext" aria-label="Berikutnya">&#8250;</button>
+    </div>
+
+</section>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="content-column right-column">
+
+
+                <!-- 03 RELIGION -->
+                <section class="content-section">
+
+                    <span class="number">03 / BELIEFS</span>
+
+                    <h2 data-id="AGAMA SAYA"
+                        data-en="MY RELIGION">
+                        AGAMA SAYA
+                    </h2>
+
+                    <p data-id="AGAMA MERUPAKAN BAGIAN DARI KEHIDUPAN SAYA. SAYA BERUSAHA MENJADIKAN NILAI-NILAI KEBAIKAN, KEJUJURAN, DAN RASA HORMAT SEBAGAI PEDOMAN DALAM KEHIDUPAN SEHARI-HARI."
+                       data-en="RELIGION IS AN IMPORTANT PART OF MY LIFE. I STRIVE TO MAKE KINDNESS, HONESTY, AND RESPECT PART OF MY EVERYDAY VALUES.">
+
+                        AGAMA MERUPAKAN BAGIAN DARI KEHIDUPAN SAYA. SAYA BERUSAHA MENJADIKAN NILAI-NILAI KEBAIKAN, KEJUJURAN, DAN RASA HORMAT SEBAGAI PEDOMAN DALAM KEHIDUPAN SEHARI-HARI.
+
+                    </p>
+
+                    <div class="section-image">
+
+                        <img src="images/religion.jpg"
+                             alt="My Religion"
+                             onclick="openPhoto(this)">
+
+                    </div>
+
+                </section>
+
+
+                <!-- 04 EDUCATION -->
+            
+<section class="content-section">
+
+    <span class="number">04 / EDUCATION</span>
+
+    <h2 data-id="PENDIDIKAN SAYA"
+        data-en="MY EDUCATION">
+        PENDIDIKAN SAYA
+    </h2>
+
+    <p data-id="SAAT INI SAYA SEDANG MENEMPUH PENDIDIKAN DAN TERUS BERUSAHA MENAMBAH PENGETAHUAN SERTA MENGEMBANGKAN KEMAMPUAN SAYA UNTUK MEMPERSIAPKAN MASA DEPAN."
+       data-en="I AM CURRENTLY PURSUING MY EDUCATION AND CONTINUOUSLY WORKING TO EXPAND MY KNOWLEDGE AND DEVELOP MY SKILLS FOR THE FUTURE.">
+
+        SAAT INI SAYA SEDANG MENEMPUH PENDIDIKAN DAN TERUS BERUSAHA MENAMBAH PENGETAHUAN SERTA MENGEMBANGKAN KEMAMPUAN SAYA UNTUK MEMPERSIAPKAN MASA DEPAN.
+
+    </p>
+
+    <!-- EDUCATION IMAGES -->
+    <div class="education-images">
+
+        <!-- UNIVERSITY -->
+        <a href="https://www.ut.ac.id/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="section-image"
+           title="Visit Universitas Terbuka">
+
+            <img src="ut.jpg" alt="Universitas Terbuka">
+
+        </a>
+
+        <!-- SCHOOL -->
+        <a href="https://sman81.sch.id/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="section-image"
+           title="Visit Education Website">
+
+            <img src="sma.jpg" alt="School">
+
+        </a>
+
+    </div>
+
+</section>
+
+                    
+
+
+
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- CONTACT -->
+<section class="contact" id="contact">
+
+    <div class="contact-card">
+
+        <!-- EMAIL -->
+        <a href="mailto:razidsky123@gmail.com" class="contact-row">
+            <span class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <path d="m3 7 9 6 9-6"/>
+                </svg>
+            </span>
+            <span class="contact-text">
+                <small>Email</small>
+                <strong>razidsky123@gmail.com</strong>
+            </span>
+        </a>
+
+        <p class="contact-label">ELSEWHERE</p>
+
+        <div class="contact-socials">
+
+            <!-- INSTAGRAM (ganti link-nya) -->
+            <a href="https://instagram.com/razidsky"
+               target="_blank" rel="noopener noreferrer" class="social-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>
+                </svg>
+                Instagram
+            </a>
+
+            <!-- TIKTOK (ganti link-nya) -->
+            <a href="https://tiktok.com/@rmji"
+               target="_blank" rel="noopener noreferrer" class="social-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                </svg>
+                TikTok
+            </a>
+
+        </div>
+    </div>
+
+</section>
+
+        <!-- IMAGE VIEWER -->
+        <div id="photoViewer"
+             class="photo-viewer"
+             onclick="closePhoto()">
+
+            <span class="close-photo">&times;</span>
+
+            <img id="expandedPhoto"
+                 src=""
+                 alt="Expanded Photo"
+                 onclick="event.stopPropagation()">
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>© 2026 RAMZI RAZIDSKY. ALL RIGHTS RESERVED.</p>
+
+        </footer>
+
+    </main>
+
+    
+<canvas id="smoke" aria-hidden="true"></canvas>
+<canvas id="c"></canvas>
+
+    <!-- JAVASCRIPT -->
+    <script src="java.js" defer></script>
+    <script>
+(() => {
+  const canvas = document.getElementById("lightrays");
+  const gl = canvas.getContext("webgl");
+  if (!gl) return;
+
+  const vert = `
+    attribute vec2 p;
+    void main(){ gl_Position = vec4(p, 0.0, 1.0); }
+  `;
+
+  const frag = `
+    precision highp float;
+    uniform float iTime;
+    uniform vec2  iRes;
+    uniform vec2  srcPos;
+    uniform vec3  colA;   // putih
+    uniform vec3  colB;   // biru muda
+    uniform float strength;
+
+    float ray(vec2 src, vec2 dir, vec2 coord, float sA, float sB, float spd) {
+      vec2 d = coord - src;
+      float dist = length(d);
+      vec2 n = d / dist;
+      float c = dot(n, dir);
+      c += 0.04 * sin(iTime * 1.5 + dist * 0.008);          // lekukan sinar
+      float spread = pow(max(c, 0.0), 1.0 / 0.55);           // lebar sebaran
+      float maxD = iRes.x * 1.15;
+      float lenFall = clamp((maxD - dist) / maxD, 0.0, 1.0);
+      float base = clamp(
+        (0.45 + 0.15 * sin(c * sA + iTime * spd)) +
+        (0.30 + 0.20 * cos(-c * sB + iTime * spd)),
+        0.0, 1.0);
+      return base * lenFall * spread;
+    }
+
+    void main(){
+      vec2 coord = vec2(gl_FragCoord.x, iRes.y - gl_FragCoord.y);
+      vec2 dir = vec2(0.0, 1.0);
+
+      float r1 = ray(srcPos, dir, coord, 36.22, 21.11, 0.6);
+      float r2 = ray(srcPos, dir, coord, 22.39, 18.02, 0.45);
+      float I = r1 * 0.55 + r2 * 0.45;
+
+      // pudar ke bawah
+      float fade = 1.0 - coord.y / iRes.y;
+      I *= 0.05 + pow(fade, 1.4) * 1.1;
+      I = clamp(I * strength, 0.0, 1.0);
+
+      // campur putih (inti sinar) + biru muda (pinggir)
+      vec3 col = mix(colB, colA, smoothstep(0.15, 0.7, I));
+      gl_FragColor = vec4(col * I, I);
+    }
+  `;
+
+  const sh = (type, src) => {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  };
+  const prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, vert));
+  gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, frag));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, "p");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const u = n => gl.getUniformLocation(prog, n);
+  const uTime = u("iTime"), uRes = u("iRes"), uSrc = u("srcPos"),
+        uA = u("colA"), uB = u("colB"), uStr = u("strength");
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const dpr = Math.min(devicePixelRatio || 1, 1.5);
+
+  function resize() {
+    canvas.width  = innerWidth  * dpr;
+    canvas.height = innerHeight * dpr;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  addEventListener("resize", resize);
+  resize();
+
+  function frame(t) {
+    const light = document.body.classList.contains("light-mode");
+
+    gl.uniform1f(uTime, reduce ? 0 : t * 0.001);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    // posisi sumber sinar: agak ke kanan tengah, di atas layar (sama kaya screenshot)
+    gl.uniform2f(uSrc, canvas.width * 0.56, -canvas.height * 0.18);
+
+    if (light) {            // light mode: biru langit lebih pekat
+      gl.uniform3f(uA, 0.55, 0.78, 1.0);
+      gl.uniform3f(uB, 0.25, 0.60, 0.98);
+      gl.uniform1f(uStr, 1.0);
+    } else {                // dark mode: putih + biru muda
+      gl.uniform3f(uA, 1.0, 1.0, 1.0);
+      gl.uniform3f(uB, 0.50, 0.80, 1.0);
+      gl.uniform1f(uStr, 1.25);
+    }
+
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(() => {
+  const el = document.getElementById("typed-logo");
+
+  const texts = [
+    "RAMZI RAZIDSKY",
+    "PERSONAL PORTOFOLIO"
+  ];
+
+  const typeSpeed = 120;
+  const deleteSpeed = 60;
+  const holdFull = 2200;
+  const holdEmpty = 500;
+
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.textContent = texts[0];
+    return;
+  }
+
+  let textIndex = 0;
+  let i = 0;
+  let deleting = false;
+
+  function tick() {
+    const text = texts[textIndex];
+
+    el.textContent = text.slice(0, i);
+
+    let delay = deleting ? deleteSpeed : typeSpeed;
+
+    if (!deleting && i === text.length) {
+      deleting = true;
+      delay = holdFull;
+    } else if (deleting && i === 0) {
+      deleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      delay = holdEmpty;
+    } else {
+      i += deleting ? -1 : 1;
+    }
+
+    setTimeout(tick, delay);
+  }
+
+  tick();
+})();
+</script>
+
+
+
+</body>
+
+
+</html>
+

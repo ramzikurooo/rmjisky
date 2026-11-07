@@ -1,0 +1,1726 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/* ========================================
+   DAFTAR ISI
+   1.  Global & Variabel
+   2.  Light Rays (background)
+   3.  Header, Logo, Tombol, Navbar
+   4.  Main Glass Container
+   5.  Hero / Intro
+   6.  Content Grid
+   7.  Section Image
+   8.  Education Images
+   9.  Photo Viewer
+   10. Footer
+   11. Animasi
+   12. Canvas (smoke & lanyard)
+   13. Light Mode
+   14. Tablet (max 900px)
+   15. Mobile (max 600px)
+   16. Small Mobile (max 380px)
+   17. Accessibility
+   18. Floating Theme Widget
+   19. Contact (bawah tengah + responsive)
+   20. Theme Widget: ikon ganti-ganti + bahasa
+   21. Hobby Gallery (geser kiri-kanan)
+   22. Photo Viewer: tombol close dekat gambar
+======================================== */
+
+
+/* ========================================
+   1. GLOBAL & VARIABEL
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Warna */
+  --background: #090909;
+  --surface: #111111;
+  --surface-light: #181818;
+  --text: #f5f5f5;
+  --muted: #999999;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #d4d4d4;
+  --box-background: rgba(255, 255, 255, 0.25);
+  --page-overlay: rgba(0, 0, 0, 0.35);
+
+  /* Font */
+  --font-main: "DM Sans", sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+
+  /* Layout */
+  --container-width: 1900px;
+  --container-padding: 5%;
+
+  /* Box utama */
+  --box-gap: 14px;        /* jarak box ke pinggir layar */
+  --box-radius: 28px;     /* makin besar makin tumpul */
+  --header-h: 85px;
+
+  /* Posisi header */
+  --logo-left: 2%;        /* jarak logo dari kiri */
+  --actions-right: 5%;    /* jarak tombol bahasa + light mode dari kanan */
+  --actions-top: 42px;    /* jarak tombol dari atas (titik tengah tombol) */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(var(--page-overlay), var(--page-overlay)),
+    url("background.jpg") center / cover fixed no-repeat;
+  background-color: var(--background);
+
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.7;
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+  font-size: clamp(32px, 6vw, 72px);
+  margin: 0;
+}
+
+p {
+  opacity: 0.6;
+  margin: 0;
+}
+
+
+/* ========================================
+   2. LIGHT RAYS CANVAS (background)
+======================================== */
+
+#lightrays {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+/* ========================================
+   3. HEADER (transparan)
+======================================== */
+
+header,
+.header {
+  position: absolute; /* diam di atas halaman, ikut hilang pas scroll */
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  width: 100%;
+  min-height: var(--header-h);
+  padding: 0 0 0 var(--logo-left);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+}
+
+/* ----- Logo + efek ngetik ----- */
+
+.logo {
+  display: flex;
+  align-items: center;
+  min-width: 14ch;   /* biar header ga goyang pas teks berubah panjang */
+
+  font-family: var(--font-heading);
+  font-size: clamp(15px, 1.5vw, 24px);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 4px;
+  background: var(--text);
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ----- Tombol bahasa + light mode (posisi tetap) ----- */
+
+.header-actions {
+  position: fixed;
+  left: 25px;
+  bottom: 25px;
+  top: auto;
+  right: auto;
+
+  transform: none;
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+
+  background: rgba(20, 20, 20, 0.35);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.controls button {
+  padding: 9px 15px;
+
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+
+  font-family: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.controls button:hover {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #f5f5f5;
+}
+
+@media (max-width: 600px) {
+  .header-actions {
+    left: 12px;
+    bottom: 15px;
+    top: auto;
+    right: auto;
+  }
+
+  .controls {
+    transform: none;
+  }
+}
+
+/* ----- Navbar (di tengah layar) ----- */
+
+.navbar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.navbar a {
+  padding: 8px 16px;
+  border-radius: 30px;
+
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--text);
+}
+
+.navbar a.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text);
+}
+
+
+/* ========================================
+   4. MAIN GLASS CONTAINER
+======================================== */
+
+main.container {
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
+
+  width: calc(100% - (var(--box-gap) * 2));
+  max-width: none;
+  min-width: 0;
+  min-height: calc(100vh - var(--header-h) - (var(--box-gap) * 2));
+
+  margin: calc(var(--header-h) + var(--box-gap)) auto var(--box-gap);
+  padding: 0 clamp(15px, 4vw, 65px);
+
+  background: var(--box-background);
+  border: 1px solid var(--border);
+  border-radius: var(--box-radius);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.25);
+}
+
+main.container,
+main.container * {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+
+/* ========================================
+   5. HERO / INTRODUCTION
+======================================== */
+
+.intro {
+  position: relative;
+  min-height: 75vh;
+  padding: 110px 0 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.8s ease both;
+}
+
+.small-title {
+  margin-bottom: 28px;
+
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.intro h1 {
+  max-width: 1000px;
+  margin-bottom: 30px;
+
+  font-family: var(--font-heading);
+  font-size: clamp(42px, 8vw, 105px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -5px;
+}
+
+.description {
+  max-width: 650px;
+
+  color: var(--muted);
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.9;
+}
+
+/* ----- Foto profil ----- */
+
+.profile-photo {
+  position: absolute;
+  top: 40%;
+  right: -5%;
+  transform: translateY(-50%);
+  z-index: 1;
+
+  width: clamp(150px, 18vw, 245px);
+  height: clamp(150px, 18vw, 245px);
+  padding: 5px;
+
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.25),
+    0 0 55px rgba(255, 255, 255, 0.12);
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.profile-glow {
+  position: absolute;
+  inset: -15px;
+  z-index: -1;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(30px);
+}
+
+
+/* ========================================
+   6. CONTENT GRID
+======================================== */
+
+.content-grid {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 70px;
+  padding: 30px 0;
+}
+
+/* Garis pembatas tengah */
+.content-grid::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 1px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.15) 10%,
+    rgba(255, 255, 255, 0.15) 90%,
+    transparent
+  );
+}
+
+.content-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.content-grid .content-section {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 65px 0;
+
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.8s ease both;
+}
+
+.number {
+  color: #777;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.content-grid .content-section h2 {
+  max-width: 100%;
+
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.content-grid .content-section p {
+  max-width: 100%;
+
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+
+/* ========================================
+   7. SECTION IMAGE
+======================================== */
+
+.content-grid .section-image {
+  width: 100%;
+  max-width: 300px;
+  height: 190px;
+  margin-top: 10px;
+
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.content-grid .section-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  cursor: pointer;
+
+  transition: transform 0.7s ease, filter 0.7s ease;
+}
+
+.content-grid .section-image:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.85);
+}
+
+
+/* ========================================
+   8. EDUCATION IMAGES
+======================================== */
+
+.education-images {
+  /* ===== ATUR UKURAN GAMBAR DI SINI ===== */
+  --ut-size: 150px;      /* ukuran logo Universitas Terbuka */
+  --sma-size: 115px;     /* ukuran logo sekolah */
+
+  /* ===== ATUR EFEK MELAYANG DI SINI ===== */
+  --float-distance: 10px;  /* jarak naik-turun */
+  --float-speed: 3.5s;     /* makin kecil makin cepat */
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  justify-items: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 360px;
+  margin: 20px auto 0;
+}
+
+.education-images .section-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 150px;
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+  overflow: visible;
+
+  animation: floatImage var(--float-speed) ease-in-out infinite;
+}
+
+/* Gambar ke-2 melayang telat sedikit biar gerakannya nggak barengan */
+.education-images .section-image:nth-child(2) {
+  animation-delay: -1.75s;
+}
+
+.education-images .section-image img {
+  display: block;
+  max-width: 100%;
+
+  object-fit: contain;
+  object-position: center;
+  cursor: pointer;
+
+  filter:
+    drop-shadow(0 0 1px rgba(161, 200, 232, 0.5))
+    drop-shadow(0 0 12px rgba(230, 234, 239, 0.35));
+
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Ukuran masing-masing gambar */
+.education-images .section-image:nth-child(1) img {
+  width: var(--ut-size);
+  height: var(--ut-size);
+}
+
+.education-images .section-image:nth-child(2) img {
+  width: var(--sma-size);
+  height: var(--sma-size);
+}
+
+.education-images .section-image:hover img {
+  transform: scale(1.05);
+
+  filter:
+    drop-shadow(0 0 8px rgba(206, 70, 70, 0.8))
+    drop-shadow(0 0 20px rgba(0, 100, 255, 0.65));
+}
+
+/* Animasi melayang */
+@keyframes floatImage {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(calc(var(--float-distance) * -1));
+  }
+}
+
+
+/* ========================================
+   9. PHOTO VIEWER
+======================================== */
+
+.photo-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+
+  background: rgba(0, 0, 0, 0.94);
+  cursor: zoom-out;
+}
+
+.photo-viewer.active {
+  display: flex;
+}
+
+.photo-viewer img {
+  max-width: 90%;
+  max-height: 85vh;
+
+  object-fit: contain;
+  border-radius: 5px;
+  cursor: default;
+
+  animation: photoZoom 0.3s ease;
+}
+
+.close-photo {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+
+  color: white;
+  font-size: 42px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.close-photo:hover {
+  color: #999;
+}
+
+@keyframes photoZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ========================================
+   10. FOOTER
+======================================== */
+
+footer {
+  padding: 35px 0;
+  text-align: center;
+}
+
+footer p {
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+
+/* ========================================
+   11. ANIMASI
+======================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================================
+   12. CANVAS EFFECTS
+======================================== */
+
+/* Asap */
+#smoke {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Lanyard */
+#c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+}
+
+
+/* ========================================
+   13. LIGHT MODE
+======================================== */
+
+body.light-mode {
+  --background: #e5e5e5;
+  --surface: #ffffff;
+  --surface-light: #e8e8e8;
+  --text: #111111;
+  --muted: #666666;
+  --border: rgba(0, 0, 0, 0.13);
+  --accent: #333333;
+  --box-background: rgba(255, 255, 255, 0.25);
+  --page-overlay: rgba(255, 255, 255, 0.35);
+}
+
+body.light-mode .logo,
+body.light-mode .controls button,
+body.light-mode .close-photo {
+  color: #111;
+}
+
+body.light-mode .controls button:hover {
+  background: #111;
+  color: white;
+  border-color: #111;
+}
+
+body.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+body.light-mode .navbar a.active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .photo-viewer {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+body.light-mode .content-grid::before {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.15) 10%,
+    rgba(0, 0, 0, 0.15) 90%,
+    transparent
+  );
+}
+
+body.light-mode .profile-photo {
+  border-color: rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.25),
+    0 0 55px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .profile-glow {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+
+/* ========================================
+   14. TABLET (max 900px)
+======================================== */
+
+@media (max-width: 900px) {
+  :root {
+    --box-gap: 12px;
+    --box-radius: 24px;
+    --header-h: 75px;
+    --actions-top: 37px;
+  }
+
+  /* Navbar pindah jadi pill di bawah layar */
+  .navbar {
+    position: fixed;
+    top: auto;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 102;
+
+    max-width: calc(100% - 24px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar a {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  main.container {
+    padding-left: clamp(18px, 3vw, 35px);
+    padding-right: clamp(18px, 3vw, 35px);
+  }
+
+  /* Hero */
+  .intro {
+    min-height: 65vh;
+    padding: 90px 0;
+  }
+
+  .intro .small-title,
+  .intro h1,
+  .intro .description {
+    max-width: 65%;
+  }
+
+  .intro h1 {
+    letter-spacing: -3px;
+  }
+
+  .profile-photo {
+    right: 1%;
+    width: clamp(150px, 23vw, 210px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  /* Content */
+  .content-grid {
+    gap: 40px;
+  }
+
+  .content-grid .content-section {
+    padding: 50px 0;
+  }
+
+  .content-grid .section-image {
+    max-width: 100%;
+    height: 170px;
+  }
+
+  .education-images {
+    --ut-size: 130px;
+    --sma-size: 10%;
+
+    max-width: 300px;
+    gap: 10px;
+  }
+}
+
+
+/* ========================================
+   15. MOBILE (max 600px)
+======================================== */
+
+@media (max-width: 600px) {
+  :root {
+    --box-gap: 8px;
+    --box-radius: 20px;
+    --header-h: 70px;
+    --logo-left: 3%;
+    --actions-right: 3%;
+    --actions-top: 35px;
+  }
+
+  /* Header */
+  header,
+  .header {
+    gap: 5px;
+  }
+
+  .logo {
+    font-size: clamp(10px, 3vw, 14px);
+    letter-spacing: 1px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .controls {
+    gap: 1px;
+    transform: translate(10px, 0);
+  }
+
+  .controls button {
+    padding: 7px 9px;
+    font-size: 10px;
+  }
+
+  /* Main */
+  main.container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .intro,
+  .content-grid,
+  .content-column,
+  .content-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Hero */
+  .intro {
+    min-height: auto;
+    padding: 75px 0;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(90px, 28vw, 145px);
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    column-gap: 12px;
+
+    text-align: left;
+  }
+
+  .intro .small-title {
+    grid-column: 1;
+    grid-row: 1;
+
+    max-width: 100%;
+    margin-bottom: 10px;
+
+    font-size: clamp(7px, 1.8vw, 10px);
+    letter-spacing: clamp(1px, 0.5vw, 3px);
+  }
+
+  .intro h1 {
+    grid-column: 1;
+    grid-row: 2;
+
+    max-width: 100%;
+    margin-bottom: 15px;
+
+    font-size: clamp(19px, 6vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    overflow-wrap: anywhere;
+  }
+
+  .intro .description {
+    grid-column: 1;
+    grid-row: 3;
+
+    max-width: 100%;
+
+    font-size: clamp(9px, 2.4vw, 13px);
+    line-height: 1.6;
+  }
+
+  .profile-photo {
+    grid-column: 2;
+    grid-row: 1 / 4;
+
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0;
+
+    justify-self: end;
+    align-self: center;
+  }
+
+  /* Content */
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  .content-grid::before {
+    display: none;
+  }
+
+  .content-grid .content-section {
+    padding: 45px 0;
+    gap: 15px;
+  }
+
+  .content-grid .content-section h2 {
+    font-size: clamp(27px, 8vw, 32px);
+    letter-spacing: -1px;
+  }
+
+  .content-grid .content-section p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* Images */
+  .content-grid .section-image {
+    width: 100%;
+    max-width: 280px;
+    height: 180px;
+  }
+
+  .education-images {
+    --ut-size: 120px;
+    --sma-size: 120px;
+
+    max-width: 280px;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Photo viewer */
+  .photo-viewer {
+    padding: 15px;
+  }
+
+  .photo-viewer img {
+    max-width: 100%;
+    max-height: 80vh;
+  }
+
+  .close-photo {
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+  }
+
+  /* Footer */
+  footer p {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+}
+
+
+/* ========================================
+   16. SMALL MOBILE (max 380px)
+======================================== */
+
+@media (max-width: 380px) {
+  :root {
+    --box-gap: 6px;
+    --box-radius: 18px;
+    --header-h: 65px;
+    --actions-top: 32px;
+  }
+
+  .logo {
+    font-size: 10px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .controls button {
+    padding: 6px 7px;
+    font-size: 9px;
+  }
+
+  main.container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .intro {
+    grid-template-columns: minmax(0, 1fr) 90px;
+    column-gap: 8px;
+  }
+
+  .intro h1 {
+    font-size: 17px;
+    letter-spacing: -0.5px;
+  }
+
+  .intro .description {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .content-grid .content-section h2 {
+    font-size: 29px;
+  }
+
+  .content-grid .section-image {
+    height: 150px;
+  }
+
+  .education-images {
+    --ut-size: 105px;
+    --sma-size: 105px;
+
+    max-width: 240px;
+    gap: 8px;
+  }
+}
+
+
+/* ========================================
+   17. ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ========================================
+   18. FLOATING THEME WIDGET
+======================================== */
+
+.theme-widget {
+  position: fixed;
+  top: 50%;
+  left: 25px;
+  z-index: 10000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  touch-action: none;
+}
+
+/* ----- Tombol utama ----- */
+
+.theme-fab {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+
+  background: rgba(120, 120, 120, 0.2);
+  color: var(--text);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  font-size: 21px;
+  cursor: grab;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.theme-fab:hover {
+  background: rgba(150, 150, 150, 0.3);
+  box-shadow: 0 0 20px rgba(150, 150, 150, 0.2);
+}
+
+.theme-fab:active {
+  cursor: grabbing;
+}
+
+/* ----- Menu pilihan ----- */
+
+.theme-menu {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 8px;
+  min-width: 145px;
+
+  background: var(--box-background);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+  animation: themeMenuIn 0.2s ease;
+}
+
+.theme-menu.active {
+  display: flex;
+}
+
+.theme-option {
+  border: none;
+  border-radius: 9px;
+  padding: 10px 12px;
+
+  background: transparent;
+  color: var(--text);
+
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.theme-option:hover {
+  background: rgba(150, 150, 150, 0.2);
+}
+
+@keyframes themeMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================================
+   19. CONTACT (bawah tengah + responsive)
+======================================== */
+
+/* Section: dipusatkan di bagian bawah halaman */
+.contact {
+  display: flex;
+  justify-content: center;
+
+  padding: 70px 0 50px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s ease both;
+}
+
+/* Card: lebar maksimal 420px, selalu di tengah */
+.contact-card {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ----- Baris email ----- */
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 0;
+
+  color: var(--text);
+  text-decoration: none;
+
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: opacity 0.3s ease;
+}
+
+.contact-row:hover {
+  opacity: 0.75;
+}
+
+.contact-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.contact-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+
+  text-align: left;
+  line-height: 1.35;
+}
+
+.contact-text small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.contact-text strong {
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* ----- Label ELSEWHERE ----- */
+
+.contact-label {
+  margin: 28px 0 14px;
+
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  opacity: 1;
+}
+
+/* ----- Tombol sosmed ----- */
+
+.contact-socials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.social-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  transition: 0.3s ease;
+}
+
+.social-pill svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.social-pill:hover {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+/* ----- Contact: light mode ----- */
+
+body.light-mode .contact-icon,
+body.light-mode .social-pill {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+body.light-mode .social-pill:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* ----- Contact: tablet (max 900px) ----- */
+/* Navbar pindah ke bawah layar di tablet, jadi kasih ruang ekstra di bawah */
+
+@media (max-width: 900px) {
+  .contact {
+    padding: 55px 0 90px;
+  }
+
+  .contact-card {
+    max-width: 380px;
+  }
+}
+
+/* ----- Contact: mobile (max 600px) ----- */
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 45px 0 85px;
+  }
+
+  .contact-card {
+    max-width: 100%;
+  }
+
+  .contact-row {
+    gap: 12px;
+  }
+
+  .contact-text strong {
+    font-size: 14px;
+  }
+
+  .contact-label {
+    margin: 24px 0 12px;
+  }
+
+  .social-pill {
+    gap: 8px;
+    padding: 11px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ----- Contact: small mobile (max 380px) ----- */
+
+@media (max-width: 380px) {
+  .contact {
+    padding: 35px 0 80px;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-text strong {
+    font-size: 13px;
+  }
+
+  /* Instagram & TikTok ditumpuk biar nggak sempit */
+  .contact-socials {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ========================================
+   20. THEME WIDGET: ikon ganti-ganti + bahasa
+======================================== */
+
+/* Animasi pergantian ikon di tombol bulat */
+#themeIcon {
+  display: inline-block;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#themeIcon.swap {
+  opacity: 0;
+  transform: scale(0.5) rotate(-25deg);
+}
+
+/* Garis pemisah antara pilihan tema dan bahasa */
+.theme-divider {
+  height: 1px;
+  margin: 2px 4px;
+  background: var(--border);
+}
+
+/* Pilihan yang sedang aktif */
+.theme-option.selected {
+  background: rgba(150, 150, 150, 0.25);
+}
+
+
+/* ========================================
+   21. HOBBY GALLERY (geser kiri-kanan)
+======================================== */
+
+.hobby-gallery {
+  /* ===== ATUR UKURAN KARTU DI SINI ===== */
+  --hobby-card-w: 150px;
+  --hobby-card-h: 205px;
+
+  position: relative;
+  width: 100%;
+  height: calc(var(--hobby-card-h) + 130px);
+  margin-top: 10px;
+
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;     /* scroll atas-bawah halaman tetap jalan di HP */
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+
+  /* Sisi kiri & kanan memudar */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.hobby-gallery.dragging {
+  cursor: grabbing;
+}
+
+.hobby-gallery:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--border);
+  border-radius: 12px;
+}
+
+.hobby-track {
+  position: absolute;
+  inset: 0;
+}
+
+/* Posisi, putaran, dan transparansi tiap kartu diatur oleh JS */
+.hobby-card {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+
+  width: var(--hobby-card-w);
+  height: var(--hobby-card-h);
+
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.hobby-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.hobby-caption {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ----- Tombol panah ----- */
+
+.hobby-nav {
+  align-self: center;
+  display: flex;
+  gap: 8px;
+}
+
+.hobby-nav button {
+  width: 36px;
+  height: 36px;
+
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.hobby-nav button:hover {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #f5f5f5;
+}
+
+/* ----- Light mode ----- */
+
+body.light-mode .hobby-card img {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.light-mode .hobby-nav button {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+body.light-mode .hobby-nav button:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* ----- Tablet (max 900px) ----- */
+
+@media (max-width: 900px) {
+  .hobby-gallery {
+    --hobby-card-w: 140px;
+    --hobby-card-h: 190px;
+  }
+}
+
+/* ----- Mobile (max 600px) ----- */
+
+@media (max-width: 600px) {
+  .hobby-gallery {
+    --hobby-card-w: 125px;
+    --hobby-card-h: 170px;
+  }
+
+  .hobby-caption {
+    font-size: 13px;
+  }
+}
+
+/* ----- Small mobile (max 380px) ----- */
+
+@media (max-width: 380px) {
+  .hobby-gallery {
+    --hobby-card-w: 108px;
+    --hobby-card-h: 148px;
+  }
+}
+
+
+/* ========================================
+   22. PHOTO VIEWER: tombol close dekat gambar
+======================================== */
+
+/* Pembungkus gambar: ukurannya mengikuti gambar, jadi tombol close
+   menempel di pojok kanan atas gambar (bukan pojok layar) */
+.photo-frame {
+  position: relative;
+  display: flex;
+  max-width: 100%;
+}
+
+.photo-viewer .photo-frame img {
+  max-width: 90vw;
+  max-height: 80vh;
+}
+
+.photo-frame .close-photo {
+  /* ===== ATUR POSISI TOMBOL CLOSE DI SINI ===== */
+  top: -14px;      /* negatif = naik ke luar gambar, positif = masuk ke dalam */
+  right: -14px;    /* negatif = geser ke luar gambar, positif = masuk ke dalam */
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+
+  font-size: 24px;
+  line-height: 1;
+  z-index: 2;
+}
+
+.photo-frame .close-photo:hover {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.light-mode .photo-frame .close-photo {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+body.light-mode .photo-frame .close-photo:hover {
+  background: #111;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .photo-viewer .photo-frame img {
+    max-width: 92vw;
+    max-height: 78vh;
+  }
+
+  .photo-frame .close-photo {
+    top: -12px;
+    right: -8px;
+
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
+  }
+}
